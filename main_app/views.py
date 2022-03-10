@@ -1,0 +1,123 @@
+from multiprocessing import context
+from django.shortcuts import render
+from django.views import View
+from django.http import HttpResponse
+from django.views.generic.base import TemplateView
+from .models import Grocery, GroceryList
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+# Create your views here.
+
+
+class Home(TemplateView):
+    template_name = "home.html"
+
+class GroceriesList(TemplateView):
+    template_name = "groceries_list.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["grocerylists"] = GroceryList.objects.all()
+        return context
+
+# class Groceries:
+#     def __init__(self, name, image, category):
+#         self.name = name
+#         self.image = image
+#         self.category = category
+# groceries = [
+#     Groceries("Carrot", "https://www.economist.com/img/b/1280/720/90/sites/default/files/20180929_BLP506.jpg", "Vegetable"),
+#     Groceries("Apple", "https://www.goodfruit.com/wp-content/uploads/Snapdragon-single.jpg", "Fruit"),
+#     Groceries("Milk", "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Glass-and-bottle-of-milk-fe0997a.jpg?quality=90&resize=960,872", "Dairy"),
+# ]
+
+@method_decorator(login_required, name='dispatch')
+class Groceries(TemplateView):
+    template_name = "groceries.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+
+        if name != None:
+            context["groceries"] = Grocery.objects.filter(name__icontains=name, user=self.request.user)
+        else:
+            context["groceries"] = Grocery.objects.filter(user=self.request.user)
+        return context
+
+
+class GroceriesCreate(CreateView):
+    model = Grocery
+    fields = ['name', 'image', 'category', 'organic']
+    template_name ="groceries_create.html"
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(GroceriesCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        print(self.kwargs)
+        return reverse('groceries_detail', kwargs={'pk': self.object.pk})
+
+class GroceriesDetail(DetailView):
+    model = Grocery
+    template_name = "groceries_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["grocerylists"] = GroceryList.objects.all()
+        return context
+
+class GroceriesUpdate(UpdateView):
+    model = Grocery
+    fields = ['name', 'image', 'category', 'organic']
+    template_name ="groceries_update.html"
+    def get_success_url(self):
+        return reverse('groceries_detail', kwargs={'pk': self.object.pk})
+
+class GroceriesDelete(DeleteView):
+    model = Grocery
+    template_name = "groceries_delete_confirmation.html"
+    success_url = "/groceries/"
+
+
+class GroceriesListAssoc(View):
+    def get(self, request, pk, grocery_pk):
+        assoc = request.GET.get("assoc")
+        if assoc == "remove":
+            GroceryList.objects.get(pk=pk).groceries.remove(grocery_pk)
+        if assoc == "add":
+            GroceryList.objects.get(pk=pk).groceries.add(grocery_pk)
+        return redirect('home')
+
+
+
+class Signup(View):
+    
+    def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)
+    
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("home")
+        else:
+            context = {"form": form}
+            return render(request, "registration/signup.html", context)
+
+
+
+
+# INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Carrot', 'https://www.economist.com/img/b/1280/720/90/sites/default/files/20180929_BLP506.jpg', 'Vegetable', 't');
+# INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Apple', 'https://www.goodfruit.com/wp-content/uploads/Snapdragon-single.jpg', 'Fruit', 't');
+# INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Milk', 'https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Glass-and-bottle-of-milk-fe0997a.jpg?quality=90&resize=960,872', 'Dairy', 't');

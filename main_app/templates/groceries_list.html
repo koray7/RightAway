@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+<div class="home__playlists">
+  {% for grocerylist in grocerylists %}
+
+  <div class="playlist mb-5">
+    <h3 class="title is-3 has-text-success">{{grocerylist.name}}</h3>
+    <hr />
+
+    {% for grocery in grocerylist.groceries.all %}
+
+    <div class="song">
+      <span>{{forloop.counter}}</span>
+      <span><b>{{grocery.name}}</b></span>
+      <span>
+        <a
+          href="{% url 'groceries_list_assoc' grocerylist.pk grocery.pk %}?assoc=remove"
+          class="button is-danger is-outlined"
+        >
+          <span class="icon is-small">
+            <i class="fas fa-times"></i>
+          </span>
+        </a>
+      </span>
+    </div>
+
+    {% endfor %}
+  </div>
+  {% empty %}
+  <div class="playlist mb-5">"There is your shopping list"</div>
+  {% endfor %}
+</div>
+{% endblock %}
