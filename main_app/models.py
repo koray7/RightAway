@@ -18,7 +18,10 @@ class Grocery(models.Model):
         ordering = ['name']
 
 class GroceryList(models.Model):
-    name = models.CharField(max_length=150)
-    groceries = models.ManyToManyField(Grocery)
+    name = models.CharField(max_length=100)
+    image = models.CharField(max_length=250)
+    groceries = models.ForeignKey(Grocery, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-        return self.name
+        return str(self.groceries.name)
+

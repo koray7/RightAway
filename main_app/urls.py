@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.Home.as_view(), name="home"),
     
-    path('grocerieslist/<int:pk>/groceries/<int:grocery_pk>', views.GroceriesListAssoc.as_view(), name="groceries_list_assoc"),
+    path('grocerieslist/', views.GroceriesList.as_view(), name="grocerieslist"),
     
     path('groceries/', views.Groceries.as_view(), name="groceries"),
     
@@ -14,6 +14,6 @@ urlpatterns = [
     path('groceries/<int:pk>/update',views.GroceriesUpdate.as_view(), name="groceries_update"),
     path('groceries/<int:pk>/delete',views.GroceriesDelete.as_view(), name="groceries_delete"),
     path('accounts/signup/', views.Signup.as_view(), name="signup"),
-
-    # path('grocerylist', views..as_view(), name="grocery_list")
+    path('grocerylist/<int:grocery_pk>/add', views.AddGrocery.as_view(), name="add_grocery"),
+    path('grocerylist/<int:grocerylist_pk>/remove', views.RemoveGrocery.as_view(), name="remove_grocery"),
 ]

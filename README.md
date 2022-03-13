@@ -1,6 +1,6 @@
 <h1>RightAway</h1>
 <h2>Welcome to "Rightaway" app.</h2>
-<h3>You can choose which service you want and let us make it ready for you!</h3>
+<h3>Choose your service, let us make it ready for you!</h3>
 
 <h2>User Stories</h2>
 <p>

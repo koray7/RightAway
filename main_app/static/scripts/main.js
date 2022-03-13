@@ -1,12 +1,11 @@
-const hamburger = document.querySelector(".navbar-burger");
-const navMenu = document.querySelector(".navbar-menu");
-
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("is-active");
-  navMenu.classList.toggle("is-active");
+document.addEventListener("scroll", function () {
+  const navbar = document.querySelector(".navbar");
+  const navbarHeight = 100;
+  const distanceFromTop = Math.abs(
+    document.body.getBoundingClientRect().top
+  );
+  if (distanceFromTop >= navbarHeight) navbar.classList.add("fixed-top");
+  else navbar.classList.remove("fixed-top");
 });
-document.querySelectorAll(".AddToList").forEach(function (AddToList) {
-  AddToList.addEventListener("click",function (event) {
-    this.classList.toggle("is-active");
-  })
-});
+const observer = new IntersectionObserver(handleScroll, options);
+observer.observe(spot);

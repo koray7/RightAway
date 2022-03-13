@@ -1,86 +1,83 @@
-body {
-  background-color: #121212;
-  color: #ffffff;
-  min-height: 100vh;
+html { 
+    background: url("https://shelbyreport.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2020/11/Amazon-Fresh-Welcome-to-Amazon-Fresh.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
-
-h1,
-h2,
-h3 {
-  color: #ffffff;
+.navbar {
+    overflow: hidden;
+    background-color: rgb(150, 150, 150, .4);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s ease-out;
+    position: sticky;
+    top: 0;
+    text-align: center;
 }
-
-.container {
-  padding: 40px;
-  padding-right: 0;
+.navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        text-align: center;
 }
-
-.title {
-  color: #ffffff;
+.navbar a:hover {
+        background: #ddd;
+        color: black;
 }
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  justify-content: center;
-  gap: 30px;
+.main {
+        padding: 16px;
+        margin-top: 30px;
+        height: 1500px;
 }
-
-.gallery .card {
-  transition: 0.1s linear;
+.image {
+    float: left;
+    width: 50%;
+    padding: 1vw;
+    display:inline;
+    position: relative;
+    overflow: hidden;
 }
-
-.gallery .card:hover {
-  transform: scale(1.1);
-  z-index: 10;
+.searchInput{
+    width: 20%;
+    padding: 1vw 1vw;
+    margin: 1vw;
+    box-sizing: border-box;
 }
-
-p {
-  font-size: 12px;
+#formDiv{
+    text-align: center;
+    margin:auto;
 }
-
-.detail__img {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 500px;
-  background-color: #ffffff;
-  overflow: hidden;
+#searchSection {
+    padding: 0;
+    margin: 0; 
 }
-
-.detail__img::after {
-  content: "";
-  background-image: linear-gradient(transparent 60%, #1f1f1f);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 5;
+.CreateNClear{
+    text-decoration: none;
 }
-
-img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  object-position: top;
+.accountName{
+    padding-top: 50%;
+    color: rgb(249, 252, 118);
+    text-align: center;
+    font-size: 3vw;
+    border:rgb(150, 150, 150, .4)
 }
-
-.detail__name {
-  position: absolute;
-  z-index: 5;
-  top: 400px;
+.searchNCreate{
+    text-align: center;
 }
-
-.detail__container {
-  margin-top: 500px;
+.groceryName{
+    color: rgb(249, 252, 118);
+    font-size: 3vw;
+    margin-top: 0;
+    text-shadow: 1px 1px 0px #ff0000;
 }
-.listOfGroceries {
-  width: 100%;
-  padding: 10px;
-  display: grid;
-  /*  New Template Columns  */
-  grid-template-columns: 0.1fr 3fr 0.5fr 0.3fr;
-  border-radius: 5px;
+.imagesAll{
+    display: flex;
+    flex-wrap: wrap;
 }

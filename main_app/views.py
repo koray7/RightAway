@@ -23,8 +23,24 @@ class GroceriesList(TemplateView):
     template_name = "groceries_list.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["grocerylists"] = GroceryList.objects.all()
+        context["grocerylists"] = GroceryList.objects.filter(user=self.request.user)
         return context
+
+class AddGrocery(View):
+    def get(self, request, grocery_pk):
+        current_grocery = Grocery.objects.get(pk=grocery_pk)
+        grocery_list = GroceryList.objects.create(user=self.request.user, name=current_grocery.name, image=current_grocery.image, groceries=current_grocery)
+        return redirect("groceries")
+
+class RemoveGrocery(View):
+    def get(self, request, grocerylist_pk):
+        grocery_list = GroceryList.objects.get(pk=grocerylist_pk)
+        grocery_list.delete()
+        return redirect("groceries")
+        
+
+
+
 
 # class Groceries:
 #     def __init__(self, name, image, category):
@@ -46,9 +62,9 @@ class Groceries(TemplateView):
         name = self.request.GET.get("name")
 
         if name != None:
-            context["groceries"] = Grocery.objects.filter(name__icontains=name, user=self.request.user)
+            context["groceries"] = Grocery.objects.filter(name__icontains=name)
         else:
-            context["groceries"] = Grocery.objects.filter(user=self.request.user)
+            context["groceries"] = Grocery.objects.all()
         return context
 
 
@@ -71,8 +87,15 @@ class GroceriesDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["grocerylists"] = GroceryList.objects.all()
+        all_groceries = Grocery.objects.all()
+        all_groceries_list = GroceryList.objects.filter(user=self.request.user).values_list("name", flat=True)
+        available=all_groceries.exclude(name__in=all_groceries_list)
+        context['available'] = available
         return context
+
+    # def get_success_url(self):
+    #     print(self.kwargs)
+    #     return reverse('groceries_detail', kwargs={'pk': self.object.pk})
 
 class GroceriesUpdate(UpdateView):
     model = Grocery
@@ -85,16 +108,6 @@ class GroceriesDelete(DeleteView):
     model = Grocery
     template_name = "groceries_delete_confirmation.html"
     success_url = "/groceries/"
-
-
-class GroceriesListAssoc(View):
-    def get(self, request, pk, grocery_pk):
-        assoc = request.GET.get("assoc")
-        if assoc == "remove":
-            GroceryList.objects.get(pk=pk).groceries.remove(grocery_pk)
-        if assoc == "add":
-            GroceryList.objects.get(pk=pk).groceries.add(grocery_pk)
-        return redirect('home')
 
 
 
@@ -116,6 +129,27 @@ class Signup(View):
             return render(request, "registration/signup.html", context)
 
 
+
+
+
+
+
+
+# class GroceriesListAssoc(View):
+#     def get(self, request, pk, grocery_pk):
+#         assoc = request.GET.get("assoc")
+#         if assoc == "remove":
+#             GroceryList.objects.get(pk=pk).groceries.remove(grocery_pk)
+#         if assoc == "add":
+#             GroceryList.objects.get(pk=pk).groceries.add(grocery_pk)
+#         return redirect('home')
+
+
+# class GroceryListCreate(CreateView):
+#     model = GroceryList
+#     fields = ['name', 'groceries']
+#     template_name ="grocerylist_create.html"
+#     success_url = "/grocerieslist/"
 
 
 # INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Carrot', 'https://www.economist.com/img/b/1280/720/90/sites/default/files/20180929_BLP506.jpg', 'Vegetable', 't');
