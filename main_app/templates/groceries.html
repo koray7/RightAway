@@ -7,14 +7,14 @@
       name="name"
       placeholder="Search for groceries  🥬🥦🫑🍒🍓🍌🌶"
     />
-    <input class="search" type="submit" value="Search"></input>
+    <input class="btn" type="submit" value="Search"></input>
   </div>
-  <div class="searchNCreate">
-    <button class="button">
-      <a class="CreateNClear" href="{% url 'groceries' %}">Clear Search</a>
+  <div class="groceries-page-btn">
+    <button>
+      <a class="btn" href="{% url 'groceries' %}">Clear Search</a>
     </button>
-    <button class="button">
-      <a class="CreateNClear" href="{% url 'groceries_create' %}"
+    <button>
+      <a class="btn" href="{% url 'groceries_create' %}"
         >Create Grocery</a
       >
     </button>
@@ -22,11 +22,11 @@
 </form>
 <h1 id="mainPageH1">Fruits</h1>
 
-<div class="imagesAll">
+<div class="yourShoppingList">
   {% for grocery in groceries %}
-  <a href="{% url 'groceries_detail' grocery.pk %}">
+  <a class="grocery-card" href="{% url 'groceries_detail' grocery.pk %}">
     <figure id="groceriesImages">
-      <img class="ind-image" src="{{grocery.image}}" alt="{{gorcery.name}}" style="width: 30%" />
+      <img class="groceries-image" src="{{grocery.image}}" alt="{{gorcery.name}}" style="width: 60%" />
       <p class="groceryName">{{grocery.name}}</p>
     </figure>
   </a>

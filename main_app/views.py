@@ -14,11 +14,14 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 # Create your views here.
-
+class CheckOut(TemplateView):
+    template_name = "check_out.html"
 
 class Home(TemplateView):
     template_name = "home.html"
 
+
+@method_decorator(login_required, name='dispatch')
 class GroceriesList(TemplateView):
     template_name = "groceries_list.html"
     def get_context_data(self, **kwargs):
@@ -53,7 +56,6 @@ class RemoveGrocery(View):
 #     Groceries("Milk", "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Glass-and-bottle-of-milk-fe0997a.jpg?quality=90&resize=960,872", "Dairy"),
 # ]
 
-@method_decorator(login_required, name='dispatch')
 class Groceries(TemplateView):
     template_name = "groceries.html"
 

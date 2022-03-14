@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
     <script src="{% static 'scripts/main.js' %}" defer></script>
     <title>Rightaway - {% block title %}{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <div class="navbar">
@@ -20,7 +24,9 @@
         <a class="navbar-item" href="/grocerieslist">Groceries List</a>
         {% if user.is_authenticated %}
         <div class="sighIn">
-          <span class="accountName">Welcome: {{user.username}}</span>
+          <span class="accountName"
+            >Welcome: {{user.username}}<span class="fa fa-user-o"></span
+          ></span>
           <a class="logOut" href="{% url 'logout' %}">Logout</a>
         </div>
         {% else %}

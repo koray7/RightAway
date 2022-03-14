@@ -16,4 +16,6 @@ urlpatterns = [
     path('accounts/signup/', views.Signup.as_view(), name="signup"),
     path('grocerylist/<int:grocery_pk>/add', views.AddGrocery.as_view(), name="add_grocery"),
     path('grocerylist/<int:grocerylist_pk>/remove', views.RemoveGrocery.as_view(), name="remove_grocery"),
+
+    path('checkout/', views.CheckOut.as_view(), name="check_out"),
 ]

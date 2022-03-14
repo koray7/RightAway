@@ -1,10 +1,12 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Add Groceries✅</h1>
+<div class="createPage">
+<h1 class="add-groceries-h1">Add Groceries✅</h1>
 
 <form method="post">
-  {% csrf_token %} {{form.as_p}}
+{% csrf_token %}
+<h3 class="form">{{form.as_p}}</h3>
 
-  <input type="submit" value="Add" />
+  <input class="btn" type="submit" value="Add" />
 </form>
-
+</div
 {% endblock %}

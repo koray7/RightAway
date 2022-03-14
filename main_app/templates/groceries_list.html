@@ -1,17 +1,31 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="yourShoppingList">
+<h1 class="your-shopping-listH1">
+  <span class="your-shopping-list-span">Your Shopping List</span>
+</h1>
+<div class="groceries-list">
   {% for grocerylist in grocerylists %}
-  <h1 class="your-shopping-listH1">
-    <span class="yourShoppingList">Your Shopping List</span>
-  </h1>
-  <p>{{ grocerylist.name }}</p>
-  <img src="{{ grocerylist.image }}" style="width: 50%" />
-  <p>{{ grocerylist.category }}</p>
-  <button type="button">
-    <a class="remove-btn" href="{% url 'remove_grocery' grocerylist.pk%}"
-      >Remove Item</a
-    >
-  </button>
-  {% endfor %} {% endblock %}
+  <div class="grocery-card">
+    <p class="groceryName">{{ grocerylist.name }}</p>
+    <img
+      class="groceries-image"
+      src="{{ grocerylist.image }}"
+      style="width: 50%"
+    />
+    {% comment %}
+    <p>{{ grocerylist.category }}</p>
+    {% endcomment %}
+    <button>
+      <a class="btn" href="{% url 'remove_grocery' grocerylist.pk%}"
+        >Remove Item</a
+      >
+    </button>
+  </div>
+  {% endfor %}
 </div>
+<div class="check-out">
+  <button class="check_out">
+    <a class="check-out-btn" href="{% url 'check_out' %}">Check out</a>
+  </button>
+</div>
+{% endblock %}
