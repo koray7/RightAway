@@ -93,10 +93,6 @@ class GroceriesDetail(DetailView):
         context['available'] = available
         return context
 
-    # def get_success_url(self):
-    #     print(self.kwargs)
-    #     return reverse('groceries_detail', kwargs={'pk': self.object.pk})
-
 class GroceriesUpdate(UpdateView):
     model = Grocery
     fields = ['name', 'image', 'category', 'organic']
@@ -127,9 +123,6 @@ class Signup(View):
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
-
-
-
 
 
 

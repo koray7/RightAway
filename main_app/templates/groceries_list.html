@@ -1,9 +1,17 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Bla bla bla</h1>
-{% for grocerylist in grocerylists %}
 
-<p>{{ grocerylist.name }}</p>
-<img src="{{ grocerylist.image }}" />
-<p>{{ grocerylist.category }}</p>
-<a href="{% url 'remove_grocery' grocerylist.pk%}">remove</a>
-{% endfor %} {% endblock %}
+<div class="yourShoppingList">
+  {% for grocerylist in grocerylists %}
+  <h1 class="your-shopping-listH1">
+    <span class="yourShoppingList">Your Shopping List</span>
+  </h1>
+  <p>{{ grocerylist.name }}</p>
+  <img src="{{ grocerylist.image }}" style="width: 50%" />
+  <p>{{ grocerylist.category }}</p>
+  <button type="button">
+    <a class="remove-btn" href="{% url 'remove_grocery' grocerylist.pk%}"
+      >Remove Item</a
+    >
+  </button>
+  {% endfor %} {% endblock %}
+</div>

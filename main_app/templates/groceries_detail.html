@@ -2,33 +2,46 @@
 
 <div class="detailPage">
   <figure class="image">
-    <img src="{{grocery.image}}" alt="{{grocery.name}}" style="width: 100%" />
+    <img
+      class="detail-img"
+      style="width: 70%"
+      style="height: 70%"
+      src="{{grocery.image}}"
+      alt="{{grocery.name}}"
+      style="width: 100%"
+    />
   </figure>
-
-  <div class="detailName">
-    {% if grocery.organic %}
-    <div class="organic">
-      <span>Organic</span>
+  <div class="detailPageTexts">
+    <div class="detailName">
+      {% if grocery.organic %}
+      <div>
+        <span class="organic">Organic ✅</span>
+      </div>
+      {% endif %}
+      <span class="grocery-name">{{grocery.name}}</span>
+      <span class="grocery-category">({{grocery.category}})</span>
     </div>
-    {% endif %}
-    <h3>{{grocery.category}}</h3>
-    <h1 class="title">{{grocery.name}}</h1>
-  </div>
-  <div class="buttons">
-    <a href="{% url 'groceries_update' grocery.pk %}" class="button">
-      Update
-    </a>
-    <a href="{% url 'groceries_delete' grocery.pk %}" class="button">Delete </a>
-    <form method="post">
-      {% csrf_token %}
-      <input type="submit" value="Add to the List❌🔱" class="button" />
-    </form>
+    <div class="buttons">
+      <button>
+        <a class="button" href="{% url 'groceries_update' grocery.pk %}"
+          >Update
+        </a>
+      </button>
+      <button>
+        <a class="button" href="{% url 'groceries_delete' grocery.pk %}"
+          >Delete
+        </a>
+      </button>
+      <form method="post">{% csrf_token %}</form>
+
+      {% if grocery in available %}
+      <button>
+        <a class="button" href="{% url 'add_grocery' grocery.pk %}"
+          >Add Grocery</a
+        >
+      </button>
+    </div>
   </div>
 </div>
-
-{% if grocery in available %}
-
-<h1>Add To List</h1>
-<a href="{% url 'add_grocery' grocery.pk %}">Add Grocery</a>
 
 {% endif %} {% endblock %}

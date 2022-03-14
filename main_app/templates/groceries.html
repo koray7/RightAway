@@ -20,13 +20,16 @@
     </button>
   </div>
 </form>
+<h1 id="mainPageH1">Fruits</h1>
+
 <div class="imagesAll">
   {% for grocery in groceries %}
   <a href="{% url 'groceries_detail' grocery.pk %}">
-    <figure class="image">
-      <img src="{{grocery.image}}" alt="{{gorcery.name}}" style="width: 50%" />
+    <figure id="groceriesImages">
+      <img class="ind-image" src="{{grocery.image}}" alt="{{gorcery.name}}" style="width: 30%" />
       <p class="groceryName">{{grocery.name}}</p>
-      </figure>
+    </figure>
   </a>
-  {% endfor %} {% endblock %}
+  {% endfor %} 
 </div>
+{% endblock %}
