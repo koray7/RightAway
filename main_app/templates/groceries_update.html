@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
-<h1 class="pt-3">Update {{grocery.name}}</h1>
-
-<form action="" method="post">
-  {% csrf_token %} {{form.as_p}} <input type="submit" value="Submit" />
-</form>
-
+<h1 class="update-h1">Update {{grocery.name}}</h1>
+<div class="update_page">
+  <form action="" method="post">
+    {% csrf_token %} {{form.as_p}}
+    <input type="submit" value="Submit" class="update-btn" />
+  </form>
+</div>
 {% endblock %}

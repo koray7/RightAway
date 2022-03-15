@@ -25,3 +25,6 @@ class GroceryList(models.Model):
     def __str__(self):
         return str(self.groceries.name)
 
+# 
+
+

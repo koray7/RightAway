@@ -226,7 +226,7 @@ border-color: rgba(255,255,255,.5);
 .check-out-page{
     text-align: center;
     margin-top: 10%;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0.5);
     color:#0051ff;
     text-shadow: 1px 1px 0px #ff0000;
 }
@@ -236,8 +236,7 @@ border-color: rgba(255,255,255,.5);
     background-color: rgba(255,255,255,0.3);
     padding:.5vw;
     border-radius: 4vw;
-    justify-content: center;
-    margin-left: 38%;
+    margin-left: 40%; 
 }
 .social-a-tag{
         padding: 20px;
@@ -299,4 +298,52 @@ a{
     color:rgb(249, 252, 118);
     text-shadow: 1px 1px 0px #ff0000;
     background-color:rgba(0, 0, 0, 0.3)
+}
+.update_page{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    background-color: rgba(255,255,255,0.5);
+}
+.update-h1{
+    color:rgb(249, 252, 118);
+    text-shadow: 1px 1px 0px #ff0000;
+    text-align: center;
+    background-color:rgba(0, 0, 0, 0.3)
+}
+.update-btn{
+    text-decoration: none;
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.1em 0.1em 0;
+    border:0.16em solid rgba(255,255,255,0);
+    border-radius:5em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:100;
+    color:#15b300;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    text-align:center;
+    transition: all 0.2s;
+    cursor: pointer;
+    margin-left: 25%;
+}
+.delete-page{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.3);
+}
+.delete-h1{
+    color:rgb(249, 252, 118);
+    text-shadow: 1px 1px 0px #ff0000;
+    text-align: center;
+    background-color:rgba(0, 0, 0, 0.3)
+}
+.delete-btn{
+    cursor: pointer;
 }

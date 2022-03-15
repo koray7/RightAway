@@ -128,8 +128,6 @@ class Signup(View):
 
 
 
-
-
 # class GroceriesListAssoc(View):
 #     def get(self, request, pk, grocery_pk):
 #         assoc = request.GET.get("assoc")
@@ -150,3 +148,29 @@ class Signup(View):
 # INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Carrot', 'https://www.economist.com/img/b/1280/720/90/sites/default/files/20180929_BLP506.jpg', 'Vegetable', 't');
 # INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Apple', 'https://www.goodfruit.com/wp-content/uploads/Snapdragon-single.jpg', 'Fruit', 't');
 # INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Milk', 'https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Glass-and-bottle-of-milk-fe0997a.jpg?quality=90&resize=960,872', 'Dairy', 't');
+
+class Fruits(TemplateView):
+    template_name = "fruits.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+
+        if name != None:
+            context["fruits"] = Grocery.objects.filter(name__icontains=name)
+        else:
+            context["fruits"] = Grocery.objects.all()
+        return context
+
+class FruitsCreate(CreateView):
+    model = Grocery
+    fields = ['name', 'image', 'category', 'organic']
+    template_name ="fruits_create.html"
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(FruitsCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        print(self.kwargs)
+        return reverse('groceries_detail', kwargs={'pk': self.object.pk})

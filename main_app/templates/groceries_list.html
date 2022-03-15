@@ -12,9 +12,7 @@
       src="{{ grocerylist.image }}"
       style="width: 50%"
     />
-    {% comment %}
-    <p>{{ grocerylist.category }}</p>
-    {% endcomment %}
+
     <button>
       <a class="btn" href="{% url 'remove_grocery' grocerylist.pk%}"
         >Remove Item</a
