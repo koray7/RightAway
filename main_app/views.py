@@ -60,10 +60,10 @@ class Groceries(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        name = self.request.GET.get("name")
+        category = self.request.GET.get("category")
 
-        if name != None:
-            context["groceries"] = Grocery.objects.filter(name__icontains=name)
+        if category != None:
+            context["groceries"] = Grocery.objects.filter(category__icontains=category)
         else:
             context["groceries"] = Grocery.objects.all()
         return context
