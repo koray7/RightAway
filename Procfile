@@ -1,1 +1,1 @@
-web: gunicorn {Rightaway}.wsgi
+web: gunicorn rightaway.wsgi
