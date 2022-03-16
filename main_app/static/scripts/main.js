@@ -7,5 +7,3 @@ document.addEventListener("scroll", function () {
   if (distanceFromTop >= navbarHeight) navbar.classList.add("fixed-top");
   else navbar.classList.remove("fixed-top");
 });
-const observer = new IntersectionObserver(handleScroll, options);
-observer.observe(spot);

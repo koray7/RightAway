@@ -59,11 +59,11 @@ html {
     margin: 0; 
 }
 .accountName{
-    padding-top: 50%;
     color: rgb(249, 252, 118);
     text-align: center;
     font-size: 3vw;
-    border:rgb(150, 150, 150, .4)
+    border:rgb(150, 150, 150, .4);
+    margin-right: 10%;
 }
 .searchNCreate{
     text-align: center;
@@ -232,11 +232,12 @@ border-color: rgba(255,255,255,.5);
 }
 .social{
     position:absolute;
-    bottom: 2vw;
+    bottom: 1vw;
     background-color: rgba(255,255,255,0.3);
     padding:.5vw;
     border-radius: 4vw;
-    margin-left: 40%; 
+    margin-left: 40%;
+    margin-top: 1vw;
 }
 .social-a-tag{
         padding: 20px;
@@ -294,7 +295,7 @@ a{
     margin-top: 10px;
 }
 .home-header{
-    margin-top: 10%;
+    margin-top: 2%;
     color:rgb(249, 252, 118);
     text-shadow: 1px 1px 0px #ff0000;
     background-color:rgba(0, 0, 0, 0.3)
@@ -346,4 +347,99 @@ a{
 }
 .delete-btn{
     cursor: pointer;
+}
+
+
+
+/*  */
+.slide-div{
+    margin-top: 3vw;
+    padding: 0;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+.slider{
+    border-radius: 5vw;
+    width: 800px;
+    height: 500px;
+    overflow: hidden;
+}
+.slides{
+    width: 500%;
+    height: 500px;;
+    display: flex;
+}
+.slides input {
+    display: none;
+}
+.slide {
+    width: 20%;
+    transition: 2s;
+}
+.slide img{
+    width: 800px;
+    height: 500px;
+}
+/*  */
+
+
+.navigation-manual{
+    position: absolute;
+    margin-top: -2vw;
+    display: flex;
+    justify-content: center;
+    margin-left: 20%;
+}
+.manual-btn{
+    border: 2px solid rgb(175, 255, 192);
+    padding: .3vw;
+    border-radius: 2vw;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.manual-btn:not(:last-child){
+    margin-right: 3vw;
+
+}
+.manual-btn:hover {
+    background:rgb(224, 240, 6);
+}
+
+#radio1:checked ~ .first{
+    margin-left: 0;
+}
+#radio2:checked ~ .first{
+    margin-left: -20%;
+}
+#radio3:checked ~ .first{
+    margin-left: -40%;
+}
+#radio4:checked ~ .first{
+    margin-left: -60%;
+}
+
+.navigation-auto div{
+    border: 2px solid red;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+}
+.navigation-auto div:not(:last-child){
+    margin-right: 5vw;
+}
+#radio1:checked ~ .navigation-auto .auto-btn1 {
+    background:rgb(44, 247, 61);
+}
+#radio2:checked ~ .navigation-auto .auto-btn2 {
+    background:rgb(44, 247, 61);
+}
+#radio3:checked ~ .navigation-auto .auto-btn3 {
+    background:rgb(44, 247, 61);
+}
+#radio4:checked ~ .navigation-auto .auto-btn4 {
+    background:rgb(44, 247, 61);
 }
