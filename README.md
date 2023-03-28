@@ -23,6 +23,8 @@ I created an app called "Rightaway" and it's an app for the people that who are 
 <li>PostgreSQL</li>
 </ul>
 
-<h2>WireFrame</h2>
+<h2>Deployment Link with Heroku</h2>
+https://rightaway-app.herokuapp.com/
+
 
 ![](images/WireFrame.png)
