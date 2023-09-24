@@ -42,19 +42,6 @@ class RemoveGrocery(View):
         return redirect("groceries")
 
 
-
-
-# class Groceries:
-#     def __init__(self, name, image, category):
-#         self.name = name
-#         self.image = image
-#         self.category = category
-# groceries = [
-#     Groceries("Carrot", "https://www.economist.com/img/b/1280/720/90/sites/default/files/20180929_BLP506.jpg", "Vegetable"),
-#     Groceries("Apple", "https://www.goodfruit.com/wp-content/uploads/Snapdragon-single.jpg", "Fruit"),
-#     Groceries("Milk", "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Glass-and-bottle-of-milk-fe0997a.jpg?quality=90&resize=960,872", "Dairy"),
-# ]
-
 class Groceries(TemplateView):
     template_name = "groceries.html"
 
