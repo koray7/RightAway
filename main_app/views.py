@@ -124,26 +124,3 @@ class Signup(View):
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
-
-
-
-# class GroceriesListAssoc(View):
-#     def get(self, request, pk, grocery_pk):
-#         assoc = request.GET.get("assoc")
-#         if assoc == "remove":
-#             GroceryList.objects.get(pk=pk).groceries.remove(grocery_pk)
-#         if assoc == "add":
-#             GroceryList.objects.get(pk=pk).groceries.add(grocery_pk)
-#         return redirect('home')
-
-
-# class GroceryListCreate(CreateView):
-#     model = GroceryList
-#     fields = ['name', 'groceries']
-#     template_name ="grocerylist_create.html"
-#     success_url = "/grocerieslist/"
-
-
-# INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Carrot', 'https://www.economist.com/img/b/1280/720/90/sites/default/files/20180929_BLP506.jpg', 'Vegetable', 't');
-# INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Apple', 'https://www.goodfruit.com/wp-content/uploads/Snapdragon-single.jpg', 'Fruit', 't');
-# INSERT INTO main_app_grocery(name, image, category, organic) VALUES ('Milk', 'https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Glass-and-bottle-of-milk-fe0997a.jpg?quality=90&resize=960,872', 'Dairy', 't');

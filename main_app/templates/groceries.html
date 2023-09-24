@@ -24,7 +24,11 @@
 
 <div class="yourShoppingList">
   {% for grocery in groceries %}
+  {% if user.is_authenticated %}
   <a class="grocery-card" href="{% url 'groceries_detail' grocery.pk %}">
+    {% else %}
+    <a class="grocery-card" href="{% url 'signup' %}">
+      {% endif %}
     <figure id="groceriesImages">
       <img class="groceries-image" src="{{grocery.image}}" alt="{{gorcery.name}}" style="width: 60%" />
       <p class="groceryName">{{grocery.name}}</p>
