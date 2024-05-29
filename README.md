@@ -1,4 +1,7 @@
-<h1>RightAway</h1>![Screenshot 2024-05-29 at 14 42 43](https://github.com/koray7/RightAway/assets/92408864/9a42e741-7234-4e4a-9524-15fc7ce3c697)
+![Screenshot 2024-05-29 at 14 42 43](https://github.com/koray7/RightAway/assets/92408864/0473d62f-e196-40d7-bf9d-2a764a24c62a)
+
+
+<h1>RightAway</h1>
 
 <h2>Welcome to "Rightaway" app.</h2>
 <h3>Choose your service, let us make it ready for you!</h3>
